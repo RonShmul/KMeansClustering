@@ -9,19 +9,20 @@ class KMeansClustering:
     df = pd.DataFrame({})
 
     def __init__(self, master):
+
+        # attributes
         self.path = None
+        self.num_of_clusters = 0
+        self.num_of_runs = 0
         self.master = master
         master.title("KMeansClustering")
-
-        self.total = 0
-        self.entered_number = 0
 
         # define path label:
         self.var_path_label = StringVar()
         self.var_path_label.set("Data path:")
         self.path_label = Label(root, textvariable=self.var_path_label)
 
-        # define num of cluster label:
+        # define num of clusters label:
         self.var_cluster_label = StringVar()
         self.var_cluster_label.set("Num of clusters k:")
         self.cluster_label = Label(root, textvariable=self.var_cluster_label)
