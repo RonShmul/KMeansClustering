@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-#import matplotlib as plt
 import matplotlib.pyplot as plt
 from scipy.stats import mode
 from PIL import Image
@@ -35,44 +34,34 @@ class Cluster:
         plt.colorbar(self.df)
 
     def horopleth_map(self):
-
-
-
-
-  '''  def printMap(self):
-        py.sign_in("sarfatyl","AAk5mt9UQlWdoE7aOiZ7")
         scl = [[0.0, 'rgb(242,240,247)'], [0.2, 'rgb(218,218,235)'], [0.4, 'rgb(188,189,220)'], \
                [0.6, 'rgb(158,154,200)'], [0.8, 'rgb(117,107,177)'], [1.0, 'rgb(84,39,143)']]
-
         data = [dict(
-            type='choropleth',
-            colorscale=scl,
-            autocolorscale=False,
-            locations=self.df['country'],
-            z=self.df['cluster'].astype(float),
-            locationmode='Country Name',
-            text=self.df['country'],
-            marker=dict(
-                line=dict(
-                    color='rgb(255,255,255)',
-                    width=2
+            type = 'choropleth',
+            colorscale = scl,
+            autocolorscale = False,
+            locations = self.df.axes[0].tolist(),
+            z = self.df["cluster"],
+            locationmode = 'country',
+            text = self.df['country'],  # todo: not sure!! maybe also toList?
+            marker = dict(
+                line = dict(
+                    color = 'rgb(255,255,255)',
+                    width = 2
                 )),
             colorbar=dict(
-                title="Cluster")
+                title="Millions USD")
         )]
 
         layout = dict(
-            title='K-Means Clustering Visualization',
-            geo=dict(
-                scope='cluster group',
-                projection=dict(type='Mercator'),
-                showlakes=True,
-                lakecolor='rgb(255, 255, 255)'),
+            title = 'K-Means Clustering Visualization',
+            geo = dict(
+                scope = 'Cluster group',
+                projection = dict(type='Mercator'),
+                showlakes = True,
+                lakecolor = 'rgb(255, 255, 255)'),
         )
-
+        py.sign_in("ronshmul", "BFWck7n9kO0cEty7zprn")
         fig = dict(data=data, layout=layout)
-        py.iplot(fig, filename='d3-cloropleth-map')
-        py.image.save_as(fig, filename="mapPLT.png")
-        temp=Image.open("mapPLT.png")
-        temp = temp.convert('RGB').convert('P', palette=Image.ADAPTIVE)
-        temp.save('mapPLT.gif') '''
+        py.iplot(fig, validate=False, filename='horopleth', auto_open=False)
+        py.image.save_as(fig, filename='horopleth.png')
